@@ -33,8 +33,14 @@ class Main {
 		var r = ~/^\/(.+)(.git)?\/(info\/refs\?service=)?(git-[^-]+-pack)$/;
 		if (!r.match(req.url))
 			throw 'Cannot deal with url';
+
+		var repo = r.matched(1);
+		if (~/^.+\.googlesource\.com\/.*/.match(repo) && !StringTools.endsWith(repo, '.git')) {
+			repo = repo + '.git';
+		}
+		
 		return {
-			repo : r.matched(1),
+			repo : repo,
 			auth : parseAuth(req.headers["authorization"]),
 			service : r.matched(4),
 			isInfoRequest : r.matched(3) != null

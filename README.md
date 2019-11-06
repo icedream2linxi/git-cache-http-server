@@ -33,7 +33,7 @@ git clone http://localhost:1234/github.com/jonasmalacofilho/git-cache-http-serve
 
 If you run your git-cache on a dedicated server or container (i.e. named gitcache), you can then also configure git to always use your cache like in the following example (don't use this configuration on the git-cache machine itself):.
 ```
-git config --global url."http://gitcache:1234/".insteadOf https://
+git config --global url."http://gitcache:1234/".insteadOf https:// && \
 ```
 
 # Installing
@@ -61,6 +61,7 @@ This is needed only if you change the Haxe source code in `src/`.
 Requirements: `haxe` and [`hmm`](https://github.com/andywhite37/hmm).  If you prefer to manage the build dependencies manually, check out [`hmm.json`](hmm.json) for the required libraries.
 
 ```
+npm install
 hmm install
 haxe build.hxml
 ```
